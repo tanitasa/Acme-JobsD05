@@ -1,0 +1,35 @@
+# i18n_es.messages
+#
+# Copyright (c) 2019 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+employer.job.list.label.reference = Referencia
+employer.job.list.label.title = Titulo
+employer.job.list.label.status = Estado
+employer.job.list.label.deadline = Fecha límite
+employer.job.list.label.salary = Salario
+employer.job.list.label.link = Enlace
+employer.job.list.label.isActive = Activado
+employer.job.list.label.applications = Aplicaciones
+employer.job.list.label.descriptor.description = Descripcion
+employer.job.list.label.descriptor.duties = Servicios
+
+employer.job.form.label.reference = Referencia
+employer.job.form.label.title = Titulo
+employer.job.form.label.status = Estado
+employer.job.form.label.deadline = Fecha límite
+employer.job.form.label.salary = Salario
+employer.job.form.label.link = Enlace
+employer.job.form.label.isActive = Activado
+employer.job.form.label.applications = Aplicaciones
+employer.job.form.label.descriptor.description = Descripcion
+employer.job.form.label.descriptor.duties = Servicios
+
+
+
+employer.job.form.button.return = Volver
