@@ -117,6 +117,9 @@ master.menu.employer = Employer
 master.menu.employer.jobs = Jobs list
 master.menu.employer.application.list = Application list
 master.menu.employer.favourite-link = Favourite link
+master.menu.employer.application.list.byreference = Application list by reference
+master.menu.employer.application.list.bystatus = Application list by status
+master.menu.employer.application.list.bycreationmoment = Application list by creation moment
 
 # master.worker ##############################################################
 master.menu.worker = Worker
