@@ -29,5 +29,6 @@ authenticated.job.form.label.isActive = Is Active
 authenticated.job.form.label.descriptor = Descriptor
 authenticated.job.form.label.employer = Employer
 authenticated.job.form.label.applications = Applications
+authenticated.job.form.label.descriptor.duties = Duties
 
 authenticated.job.form.button.return = Return

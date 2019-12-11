@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.applications.Application;
 import acme.entities.descriptors.Descriptor;
+import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Model;
@@ -30,7 +31,10 @@ public class AuthenticatedJobShowService implements AbstractShowService<Authenti
 	public boolean authorise(final Request<Job> request) {
 		assert request != null;
 
-		return true;
+		int id = request.getModel().getInteger("id");
+		Job job = this.repository.findOneById(id);
+
+		return job.getIsActive();
 	}
 
 	@Override
@@ -40,9 +44,8 @@ public class AuthenticatedJobShowService implements AbstractShowService<Authenti
 		assert model != null;
 
 		Descriptor descriptor = entity.getDescriptor();
-
+		Collection<Duty> duties = descriptor.getDuties();
 		Employer employer = entity.getEmployer();
-
 		Collection<Application> applications = entity.getApplications();
 
 		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor", "employer", "applications");
@@ -50,6 +53,7 @@ public class AuthenticatedJobShowService implements AbstractShowService<Authenti
 		model.setAttribute("descriptor", descriptor.getDescription());
 		model.setAttribute("employer", employer.getCompany());
 		model.setAttribute("applications", applications);
+		model.setAttribute("duties", duties);
 	}
 
 	@Override

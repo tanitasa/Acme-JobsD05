@@ -37,6 +37,15 @@
 <jstl:forEach items="${applications}" var="app" >
 <jstl:out value="${app.getReference()}"/>
 </jstl:forEach> --%>
+
+	<acme:message  code="authenticated.job.form.label.descriptor.duties"/><br/>
+    <acme:form>
+	    <jstl:forEach items="${duties}" var="item">
+	        <jstl:out value ="${item.getTitle()}"/><br/>
+	        <jstl:out value    ="${item.getDescription()}"/><br/>
+	        <jstl:out value="${item.getPercentage()}"/><br/><br/>
+	    </jstl:forEach>
+    </acme:form>
  
 
 	<acme:form-return code="authenticated.job.form.button.return" />

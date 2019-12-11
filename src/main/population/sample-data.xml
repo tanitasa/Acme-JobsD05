@@ -611,6 +611,7 @@
 		<property name="duties">
 			<list>
 				<ref bean="duty1" />
+				<ref bean="duty5" />
   			</list>
 		</property>							
   	</bean>
@@ -620,6 +621,7 @@
 		<property name="duties">
 			<list>
 				<ref bean="duty2" />
+				<ref bean="duty6" />
   			</list>
 		</property>							
   	</bean>
@@ -665,6 +667,18 @@
 		<property name="title" value="Duty 4" />
 		<property name="description" value="Description Duty 4" />						
 		<property name="percentage" value="65.5" />						
+  	</bean>
+  	
+  	<bean id="duty5" class="acme.entities.duties.Duty">
+		<property name="title" value="Duty 5" />
+		<property name="description" value="Description Duty 5" />						
+		<property name="percentage" value="60.5" />						
+  	</bean>
+  	
+  	<bean id="duty6" class="acme.entities.duties.Duty">
+		<property name="title" value="Duty 6" />
+		<property name="description" value="Description Duty 6" />						
+		<property name="percentage" value="95.5" />						
   	</bean>
 	
 	

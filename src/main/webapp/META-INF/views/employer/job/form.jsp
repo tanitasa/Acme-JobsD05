@@ -28,5 +28,15 @@
 <%-- 	<acme:form-textarea code="employer.job.form.label.descriptor.duties" path="descriptor.duties.title"/>	 
 	<acme:form-textarea code="employer.job.form.label.applications" path ="applications.reference"/> --%>
 	
+	
+	<acme:message  code="employer.job.form.label.descriptor.duties"/><br/>
+    <acme:form>
+	    <jstl:forEach items="${duties}" var="item">
+	        <jstl:out value ="${item.getTitle()}"/><br/>
+	        <jstl:out value    ="${item.getDescription()}"/><br/>
+	        <jstl:out value="${item.getPercentage()}"/><br/><br/>
+	    </jstl:forEach>
+    </acme:form>
+	
 	<acme:form-return code="employer.job.form.button.return"/>
 </acme:form>

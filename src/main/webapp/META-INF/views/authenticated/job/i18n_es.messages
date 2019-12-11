@@ -31,3 +31,4 @@ authenticated.job.form.label.descriptor = Descriptor
 authenticated.job.form.label.employer = Empleado
 authenticated.job.form.label.applications = Aplicaciones
 authenticated.challenge.form.button.return = Volver
+authenticated.job.form.label.descriptor.duties = Servicios
