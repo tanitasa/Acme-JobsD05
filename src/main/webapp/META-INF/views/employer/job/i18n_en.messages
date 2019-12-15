@@ -20,6 +20,11 @@ employer.job.list.label.applications = Applications
 employer.job.list.label.descriptor.description = Description
 employer.job.list.label.descriptor.duties = Duties
 
+employer.job.list.label.update = Update
+employer.job.list.label.delete = Delete
+employer.job.list.label.create = Create
+
+
 
 employer.job.form.label.reference = Reference
 employer.job.form.label.title = Title
@@ -31,6 +36,10 @@ employer.job.form.label.isActive = isActive
 employer.job.form.label.applications = Applications
 employer.job.form.label.descriptor.description = Description
 employer.job.form.label.descriptor.duties = Duties
+
+employer.job.form.button.update = Update
+employer.job.form.button.delete = Delete
+employer.job.form.button.create = Create
 
 
 employer.job.form.button.return = Return
