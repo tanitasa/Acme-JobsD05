@@ -20,7 +20,7 @@
 	<acme:form-textbox code="employer.job.form.label.title" path="title"/>
 	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
 	
-<<<<<<< HEAD
+
 		<jstl:if test="${command == 'create' }">
 		<acme:form-select code="employer.job.form.label.status" path="status">
 				</br>
@@ -37,7 +37,7 @@
 				<acme:form-option code="${isActive}" value="${isActive}"/>
 				<acme:form-option code="true" value="true"/>
 			    <acme:form-option code="false" value="false"/>
-		<!-- 	draft|published|borrador|publicado -->
+		
 			
 		</acme:form-select>
 	</jstl:if>
@@ -70,12 +70,10 @@
 	<acme:form-url     code="employer.job.form.label.link" path="link"/>
 	<%-- <acme:form-textbox code="employer.job.form.label.isActive" path="isActive"/> --%>
 	
+
 	<jstl:if test="${command == 'create' }">
 		<acme:form-select code="employer.job.form.label.descriptor.description" path="descriptor">
-=======
-	<jstl:if test="${command == 'create' }">
-		<acme:form-select code="employer.job.form.label.descriptor" path="descriptor">
->>>>>>> branch 'master' of https://github.com/tanitasa/Acme-JobsD05.git
+
 			<jstl:forEach items="${descriptors}" var="descriptor">
 				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor}"/>
 			</jstl:forEach>
