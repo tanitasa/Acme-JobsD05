@@ -1,11 +1,10 @@
 
 package acme.features.employer.job;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
@@ -65,12 +64,37 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert errors != null;
 
-		Date hoy = new Date();
+		Double suma = 0.0;
 
-		if (entity.getDeadline() != null && entity.getStatus() != null) {
-			boolean esFinal = hoy.before(entity.getDeadline()) && entity.getIsActive();
-			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal");
+		if (entity.getDescriptor() == null) {
+			boolean tieneDescriptor = entity.getDescriptor() == null;
+			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
 		}
+
+		//		if (!errors.hasErrors("descriptor")) {
+		//			boolean tieneDescriptor = entity.getDescriptor() == null;
+		//			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
+		//		}
+
+		for (Duty d : entity.getDescriptor().getDuties()) {
+			suma = suma + d.getPercentage();
+		}
+		boolean mayorQue100 = suma > 100.0;
+
+		if (suma != 100.0) {
+			errors.state(request, mayorQue100, "descriptor", "employer.job.error.descriptor.mayorQue100");
+		}
+
+		//		if (!errors.hasErrors("descriptor")) {
+		//			for (Duty d : entity.getDescriptor().getDuties()) {
+		//				suma = suma + d.getPercentage();
+		//			}
+		//			boolean mayorQue100 = suma > 100.0;
+		//
+		//			errors.state(request, mayorQue100, "descriptor", "employer.job.error.descriptor.mayorQue100");
+		//		}
+
+		//Mirar 3º condicion de SPAM.
 
 	}
 

@@ -9,7 +9,7 @@
     create table `announcement` (
        `id` integer not null,
         `version` integer not null,
-        `creation_moment` datetime,
+        `creation_moment` datetime(6),
         `description` varchar(255),
         `link` varchar(255),
         `title` varchar(255),
@@ -26,7 +26,7 @@
     create table `application` (
        `id` integer not null,
         `version` integer not null,
-        `creation_moment` datetime,
+        `creation_moment` datetime(6),
         `qualifications` varchar(255),
         `reference` varchar(255),
         `skills` varchar(255),
@@ -48,7 +48,7 @@
        `id` integer not null,
         `version` integer not null,
         `bronze_en` varchar(255),
-        `deadline` datetime,
+        `deadline` datetime(6),
         `description` varchar(255),
         `gold_en` varchar(255),
         `reward_bronze_amount` double precision,
@@ -129,7 +129,7 @@
     create table `job` (
        `id` integer not null,
         `version` integer not null,
-        `deadline` datetime,
+        `deadline` datetime(6),
         `is_active` bit,
         `link` varchar(255),
         `reference` varchar(255),
@@ -150,8 +150,8 @@
     create table `offer` (
        `id` integer not null,
         `version` integer not null,
-        `creation_moment` datetime,
-        `deadline` datetime,
+        `creation_moment` datetime(6),
+        `deadline` datetime(6),
         `description` varchar(255),
         `max_reward_amount` double precision,
         `max_reward_currency` varchar(255),
@@ -174,8 +174,8 @@
     create table `requests` (
        `id` integer not null,
         `version` integer not null,
-        `creation_moment` datetime,
-        `deadline` datetime,
+        `creation_moment` datetime(6),
+        `deadline` datetime(6),
         `description` varchar(255),
         `reward_amount` double precision,
         `reward_currency` varchar(255),

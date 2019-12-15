@@ -14,6 +14,7 @@
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <acme:list>
 	<acme:list-column code="employer.job.list.label.reference" width="5%" path="reference"/>
@@ -24,8 +25,8 @@
 	<acme:list-column code="employer.job.list.label.link" width="5%" path="link"/>
 	<acme:list-column code="employer.job.list.label.isActive" width="5%" path="isActive"/>
 	
-	<acme:list-column code="employer.job.list.label.descriptor.description" width="5%" path="descriptor.description"/>
-<%-- 	<acme:list-column code="employer.job.list.label.descriptor.duties" width="5%" path="descriptor.duties.title"/>
+	<%--<acme:list-column code="employer.job.list.label.descriptor.description" width="5%" path="descriptor.description"/>
+ 	<acme:list-column code="employer.job.list.label.descriptor.duties" width="5%" path="descriptor.duties.title"/>
 	<acme:list-column code="employer.job.list.label.applications" width="5%" path="applications.reference"/> --%>
 	
 	

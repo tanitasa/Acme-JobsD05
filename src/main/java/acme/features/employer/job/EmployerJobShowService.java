@@ -29,7 +29,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 	public boolean authorise(final Request<Job> request) {
 		assert request != null;
 
-		boolean result;
+		boolean result = true;
 		int jobId;
 
 		Job job;
@@ -44,6 +44,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		result = job.getStatus().equals("publicado") || job.getStatus().equals("published") || !(job.getStatus().equals("publicado") || job.getStatus().equals("published")) && employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;
+
 	}
 
 	@Override
