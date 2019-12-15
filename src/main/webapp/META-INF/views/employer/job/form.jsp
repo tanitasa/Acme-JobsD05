@@ -43,9 +43,8 @@
 
 	<jstl:if test="${command == 'create' }">
 		<acme:form-select code="employer.job.form.label.descriptor" path="descriptor">
-
 			<jstl:forEach items="${descriptors}" var="descriptor">
-				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor.getId()}"/>
+				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor.getId()}" />
 			</jstl:forEach>
 		</acme:form-select>
 	</jstl:if>
