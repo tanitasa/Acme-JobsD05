@@ -18,6 +18,7 @@ employer.job.list.label.isActive = Activado
 employer.job.list.label.applications = Aplicaciones
 employer.job.list.label.descriptor.description = Descripcion
 employer.job.list.label.descriptor.duties = Servicios
+employer.job.list.label.descriptor = Descriptor
 
 employer.job.list.label.update = Actualizar
 employer.job.list.label.delete = Borrar
@@ -33,7 +34,7 @@ employer.job.form.label.isActive = Activado
 employer.job.form.label.applications = Aplicaciones
 employer.job.form.label.descriptor.description = Descripcion
 employer.job.form.label.descriptor.duties = Servicios
-
+employer.job.form.label.descriptor = Descriptor
 
 employer.job.form.button.update = Actualizar
 employer.job.form.button.delete = Borrar

@@ -21,50 +21,20 @@
 	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
 	
 
-		<jstl:if test="${command == 'create' }">
-		<acme:form-select code="employer.job.form.label.status" path="status">
-				</br>
-				<acme:form-option code="${status}" value="${status}"/>
+	 
+	<acme:form-select code="employer.job.form.label.status" path="status">
 				<acme:form-option code="draft" value="draft"/>
 			    <acme:form-option code="published" value="published"/>
 		<!-- 	draft|published|borrador|publicado -->
 			
-		</acme:form-select>
+	</acme:form-select>
 	
 	
-		<acme:form-select code="employer.job.form.label.isActive" path="isActive">
-				</br>
-				<acme:form-option code="${isActive}" value="${isActive}"/>
-				<acme:form-option code="true" value="true"/>
-			    <acme:form-option code="false" value="false"/>
-		
-			
-		</acme:form-select>
-	</jstl:if>
-	
-		<jstl:if test="${command == 'update' }">
-		<acme:form-select code="employer.job.form.label.status" path="status">
-				</br>
-				<acme:form-option code="${status}" value="${status}"/>
-				<acme:form-option code="draft" value="draft"/>
-			    <acme:form-option code="published" value="published"/>
-		<!-- 	draft|published|borrador|publicado -->
-			 
-		</acme:form-select>
-		
-		
-		<acme:form-select code="employer.job.form.label.isActive" path="isActive">
-				</br>
-				<acme:form-option code="${isActive}" value="${isActive}"/>
-				<acme:form-option code="true" value="true"/>
-			    <acme:form-option code="false" value="false"/>
-		<!-- 	draft|published|borrador|publicado -->
-			
-		</acme:form-select>
-	</jstl:if>
-	
-	
-	
+	<acme:form-select code="employer.job.form.label.isActive" path="isActive">
+				<acme:form-option code="true" value="True"/>
+			    <acme:form-option code="false" value="False"/>
+	</acme:form-select> 
+
 	<acme:form-moment  code="employer.job.form.label.deadline" path="deadline"/>
 	<acme:form-money   code="employer.job.form.label.salary" path="salary"/>
 	<acme:form-url     code="employer.job.form.label.link" path="link"/>
@@ -72,10 +42,10 @@
 	
 
 	<jstl:if test="${command == 'create' }">
-		<acme:form-select code="employer.job.form.label.descriptor.description" path="descriptor">
+		<acme:form-select code="employer.job.form.label.descriptor" path="descriptor">
 
 			<jstl:forEach items="${descriptors}" var="descriptor">
-				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor}"/>
+				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor.getId()}"/>
 			</jstl:forEach>
 		</acme:form-select>
 	</jstl:if>

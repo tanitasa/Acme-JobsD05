@@ -51,7 +51,6 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 		Employer employer = this.repository.findEmployerById(request.getPrincipal().getActiveRoleId());
 		model.setAttribute("employer", employer);
-
 	}
 
 	@Override
