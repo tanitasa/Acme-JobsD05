@@ -1,9 +1,13 @@
 
 package acme.features.employer.job;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.descriptors.Descriptor;
+import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
@@ -42,7 +46,11 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor.description");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor", "employer");
+		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
+		model.setAttribute("descriptors", descriptors);
+		Employer employer = this.repository.findEmployerById(request.getPrincipal().getActiveRoleId());
+		model.setAttribute("employer", employer);
 
 	}
 
@@ -60,6 +68,24 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		Double suma = 0.0;
+
+		if (!errors.hasErrors("descriptor")) {
+			boolean tieneDescriptor = entity.getDescriptor() == null;
+			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
+		}
+
+		if (!errors.hasErrors("descriptor")) {
+			for (Duty d : entity.getDescriptor().getDuties()) {
+				suma = suma + d.getPercentage();
+			}
+			boolean mayorQue100 = suma > 100.0;
+
+			errors.state(request, mayorQue100, "descriptor", "employer.job.error.descriptor.mayorQue100");
+		}
+
+		//Mirar 3º condicion de SPAM.
 
 	}
 

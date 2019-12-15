@@ -114,6 +114,7 @@ master.company.email = contact@acmejobs.com
 # master.employer ##############################################################
 master.menu.employer = Empleado
 master.menu.employer.jobs = Lista de trabajos
+master.menu.employer.job.create = Crear trabajo
 master.menu.employer.application.list = Lista de aplicaciones
 master.menu.employer.favourite-link = Enlace favorito
 master.menu.employer.application.list.byreference = Lista de aplicaciones por referencia

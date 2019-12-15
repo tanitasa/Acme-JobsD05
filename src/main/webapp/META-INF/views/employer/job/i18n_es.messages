@@ -41,3 +41,7 @@ employer.job.form.button.create = Crear
 
 
 employer.job.form.button.return = Volver
+
+#JOB ERRORS
+employer.job.error.status.esFinal = Trabajo tiene que estar en modo final
+employer.job.error.applications.esFinal = Solo se puede borrar si la lista de aplicaciones esta vacia

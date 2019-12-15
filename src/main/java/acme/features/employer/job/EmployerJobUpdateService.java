@@ -1,6 +1,8 @@
 
 package acme.features.employer.job;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor.description");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive");
 
 	}
 
@@ -63,9 +65,12 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert errors != null;
 
-		//		if (null != entity.getDeadline() && entity.getDeadline().before(new Date(System.currentTimeMillis() - 1))) {
-		//			errors.add("deadline", "Must be in the future");
-		//		}
+		Date hoy = new Date();
+
+		if (entity.getDeadline() != null && entity.getStatus() != null) {
+			boolean esFinal = hoy.before(entity.getDeadline()) && entity.getIsActive();
+			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal");
+		}
 
 	}
 

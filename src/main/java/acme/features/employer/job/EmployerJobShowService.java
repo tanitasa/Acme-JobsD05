@@ -31,6 +31,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 
 		boolean result;
 		int jobId;
+
 		Job job;
 		Employer employer;
 		Principal principal;
@@ -39,7 +40,8 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		job = this.repository.findOneById(jobId);
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
-		result = job.getIsActive() || !job.getIsActive() && employer.getUserAccount().getId() == principal.getAccountId();
+		//result = job.getIsActive() || !job.getIsActive() && employer.getUserAccount().getId() == principal.getAccountId();
+		result = job.getStatus().equals("publicado") || job.getStatus().equals("published") || !(job.getStatus().equals("publicado") || job.getStatus().equals("published")) && employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;
 	}
@@ -52,7 +54,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 
 		Collection<Duty> duties = entity.getDescriptor().getDuties();
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor.description");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive");
 		model.setAttribute("duties", duties);
 	}
 

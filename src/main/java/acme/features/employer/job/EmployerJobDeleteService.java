@@ -1,9 +1,13 @@
 
 package acme.features.employer.job;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.applications.Application;
+import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
@@ -41,7 +45,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor.description");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive");
 
 	}
 
@@ -63,6 +67,10 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert entity != null;
 		assert errors != null;
 
+		Collection<Application> applications = this.repository.findApplicationsByJobId(entity.getId());
+		boolean esFinal = applications.isEmpty();
+		errors.state(request, esFinal, "applications", "employer.job.error.applications.esFinal");
+
 	}
 
 	@Override
@@ -70,7 +78,16 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert request != null;
 		assert entity != null;
 
+		Collection<Application> applications = this.repository.findApplicationsByJobId(entity.getId());
+		for (Application ap : applications) {
+			this.repository.delete(ap);
+		}
+
 		this.repository.delete(entity);
+		for (Duty d : entity.getDescriptor().getDuties()) {
+			this.repository.delete(d);
+		}
+		this.repository.delete(entity.getDescriptor());
 	}
 
 }
