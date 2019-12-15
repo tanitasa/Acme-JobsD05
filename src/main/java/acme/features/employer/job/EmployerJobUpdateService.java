@@ -79,6 +79,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		for (Duty d : entity.getDescriptor().getDuties()) {
 			suma = suma + d.getPercentage();
 		}
+
 		boolean mayorQue100 = suma > 100.0;
 
 		if (suma != 100.0) {
