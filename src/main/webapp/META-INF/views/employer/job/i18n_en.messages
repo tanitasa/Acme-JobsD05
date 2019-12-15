@@ -40,6 +40,7 @@ employer.job.form.label.descriptor.duties = Duties
 employer.job.form.button.update = Update
 employer.job.form.button.delete = Delete
 employer.job.form.button.create = Create
+employer.descriptor.button.show = Descriptor
 
 
 employer.job.form.button.return = Return
