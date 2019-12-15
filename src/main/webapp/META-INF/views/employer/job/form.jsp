@@ -48,7 +48,7 @@
 				<acme:form-option code="draft" value="draft"/>
 			    <acme:form-option code="published" value="published"/>
 		<!-- 	draft|published|borrador|publicado -->
-			
+			 
 		</acme:form-select>
 		
 		
