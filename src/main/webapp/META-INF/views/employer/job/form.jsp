@@ -44,9 +44,9 @@
 	<%-- <acme:form-textbox code="employer.job.form.label.isActive" path="isActive"/> --%>
 	
 		
-		<acme:form-select code="employer.job.form.label.descriptor" path="descriptor">
+		<acme:form-select code="employer.job.form.label.descriptor" path="descriptorId">
 			<jstl:forEach items="${descriptors}" var="descriptor">
-				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor}" />
+				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor.getId()}" />
 			</jstl:forEach>
 		</acme:form-select>
 	

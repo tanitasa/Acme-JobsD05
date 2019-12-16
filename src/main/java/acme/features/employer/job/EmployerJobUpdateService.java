@@ -10,6 +10,7 @@ import acme.entities.descriptors.Descriptor;
 import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
+import acme.features.employer.descriptor.EmployerDescriptorRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -21,7 +22,10 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 	//InternalState
 	@Autowired
-	EmployerJobRepository repository;
+	EmployerJobRepository			repository;
+
+	@Autowired
+	EmployerDescriptorRepository	descriptorRepository;
 
 
 	@Override
@@ -62,7 +66,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
 		model.setAttribute("descriptors", descriptors);
 
 	}
@@ -119,6 +123,11 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 	public void update(final Request<Job> request, final Job entity) {
 		assert request != null;
 		assert entity != null;
+
+		String idAux = (String) request.getModel().getAttribute("descriptorId");
+		int id = Integer.parseInt(idAux);
+		Descriptor descriptor = this.descriptorRepository.findOneById(id);
+		entity.setDescriptor(descriptor);
 
 		this.repository.save(entity);
 

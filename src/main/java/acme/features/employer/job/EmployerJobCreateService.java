@@ -10,6 +10,7 @@ import acme.entities.descriptors.Descriptor;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.features.authenticated.employer.AuthenticatedEmployerRepository;
+import acme.features.employer.descriptor.EmployerDescriptorRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -24,6 +25,9 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 	@Autowired
 	AuthenticatedEmployerRepository	employerRepository;
+
+	@Autowired
+	EmployerDescriptorRepository	descriptorRepository;
 
 
 	@Override
@@ -49,7 +53,7 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor", "employer");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "employer");
 		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
 		model.setAttribute("descriptors", descriptors);
 
@@ -84,6 +88,11 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		principal = (Employer) this.employerRepository.findById(request.getPrincipal().getActiveRoleId()).orElse(null);
 		assert principal != null;
 		entity.setEmployer(principal);
+
+		String idAux = (String) request.getModel().getAttribute("descriptorId");
+		int id = Integer.parseInt(idAux);
+		Descriptor descriptor = this.descriptorRepository.findOneById(id);
+		entity.setDescriptor(descriptor);
 
 		this.repository.save(entity);
 
