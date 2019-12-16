@@ -1,9 +1,12 @@
 
 package acme.features.employer.job;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.descriptors.Descriptor;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Model;
@@ -51,9 +54,11 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		assert model != null;
 
 		//Collection<Duty> duties = entity.getDescriptor().getDuties();
+		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor");
 		//model.setAttribute("duties", duties);
+		model.setAttribute("descriptors", descriptors);
 	}
 
 	@Override

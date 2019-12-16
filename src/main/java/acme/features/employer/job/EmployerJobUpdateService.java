@@ -1,9 +1,12 @@
 
 package acme.features.employer.job;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.descriptors.Descriptor;
 import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
@@ -57,7 +60,10 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
+		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
+
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor");
+		model.setAttribute("descriptors", descriptors);
 
 	}
 
@@ -82,13 +88,14 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		Double suma = 0.0;
 
 		if (entity.getStatus() != null) { //No se puede modificar si está en modo published
-			boolean esFinal = entity.getStatus().equals("draft");
+			Job oldJob = this.repository.findOneById(entity.getId());
+			boolean esFinal = oldJob.getStatus().equals("draft");
 			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal"); //errors.state salta si no se cumple esFinal
 		}
 
 		if (entity.getDescriptor() != null) {
 			boolean esFinal = entity.getDescriptor() != null;
-			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
+			errors.state(request, esFinal, "status", "employer.job.error.descriptor.tieneDescriptor");
 		}
 
 		//		if (!errors.hasErrors("descriptor")) {
@@ -101,7 +108,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 				suma = suma + d.getPercentage();
 			}
 			boolean esFinal = suma == 100.0;
-			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.mayorQue100");
+			errors.state(request, esFinal, "status", "employer.job.error.descriptor.mayorQue100");
 		}
 
 		//Mirar 3º condicion de SPAM.
