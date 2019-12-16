@@ -22,8 +22,13 @@ employer.application.form.label.status = Status
 employer.application.form.label.qualifications = Qualifications
 employer.application.form.label.skills = Skills
 employer.application.form.label.job = Job
+employer.application.form.label.justification = Justification
 
 employer.application.form.button.create = Create
 employer.application.form.button.delete = Delete
 employer.application.form.button.update = Update
 employer.application.form.button.return = Return
+
+
+
+employer.application.error.justification.rejected = Rejected applications must have a mandatory justification

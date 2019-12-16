@@ -34,6 +34,9 @@ public class EmployerApplicationController extends AbstractController<Employer, 
 	@Autowired
 	private EmployerApplicationListByCreationMomentService	listByCreationMomentService;
 
+	@Autowired
+	private EmployerApplicationUpdateService				updateService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -44,6 +47,7 @@ public class EmployerApplicationController extends AbstractController<Employer, 
 		super.addCustomCommand(CustomCommand.LIST_BY_REFERENCE, BasicCommand.LIST, this.listByReferenceService);
 		super.addCustomCommand(CustomCommand.LIST_BY_STATUS, BasicCommand.LIST, this.listByStatusService);
 		super.addCustomCommand(CustomCommand.LIST_BY_CREATION_MOMENT, BasicCommand.LIST, this.listByCreationMomentService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 	}
 
 }

@@ -16,15 +16,22 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="employer.application.form.label.reference" path="reference"/>
+	<acme:form-textbox code="employer.application.form.label.reference" path="reference" readonly="true"/>
 	<jstl:if test="${comand != 'create' }">
 		<acme:form-moment code="employer.application.form.label.creationMoment" path="creationMoment" readonly="true"/>
 	</jstl:if>
-	<acme:form-textbox code="employer.application.form.label.statement" path="statement"/>
+	<acme:form-textbox code="employer.application.form.label.statement" path="statement" readonly="true"/>
 	<acme:form-textbox code="employer.application.form.label.status" path="status"/>
-	<acme:form-textbox code="employer.application.form.label.qualifications" path="qualifications"/>
-	<acme:form-textbox code="employer.application.form.label.skills" path="skills"/>	
-	<acme:form-textbox code="employer.application.form.label.job" path="job.title"/>
+	<acme:form-textbox code="employer.application.form.label.qualifications" path="qualifications" readonly="true"/>
+	<acme:form-textbox code="employer.application.form.label.skills" path="skills" readonly="true"/>	
+	<acme:form-textbox code="employer.application.form.label.job" path="job.title" readonly="true"/>
+	<acme:form-textarea code="employer.application.form.label.justification" path="justification"/>
+	
+	<acme:check-access test="hasRole('Employer')">
+		<acme:form-submit code="employer.application.form.button.update" action="/employer/application/update"/>
+	</acme:check-access>
+	
+	
 <%-- 	<acme:form-submit test="${command == 'show'}"
 		code = "employer.application.form.button.update"
 		action="/employer/application/update"/>

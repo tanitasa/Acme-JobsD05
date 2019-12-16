@@ -579,17 +579,19 @@
 		<property name="statement" value="Statement 1" />	
 		<property name="skills" value="Skills 1" />	
 		<property name="qualifications" value="Qualifications 1" />
+		<property name="justification" value="" />
 		<property name="job" ref="job1" />
 		<property name="worker" ref="worker1Worker" />					
   	</bean>
   	
   	<bean id="application2" class="acme.entities.applications.Application">
   		<property name="reference" value="EMPU-JOBU:WORW" />
-		<property name="status" value="pending" />
+		<property name="status" value="reject" />
 		<property name="creationMoment" value="2019/05/10 10:59" />
 		<property name="statement" value="Statement 2" />	
 		<property name="skills" value="Skills 2" />	
 		<property name="qualifications" value="Qualifications 2" />
+		<property name="justification" value="The application does not meet the requirements" />
 		<property name="job" ref="job1" />
 		<property name="worker" ref="worker1Worker" />					
   	</bean>
@@ -601,6 +603,7 @@
 		<property name="statement" value="Statement 3" />	
 		<property name="skills" value="Skills 3" />	
 		<property name="qualifications" value="Qualifications 3" />
+		<property name="justification" value="" />
 		<property name="job" ref="job2" />
 		<property name="worker" ref="worker2Worker" />					
   	</bean>

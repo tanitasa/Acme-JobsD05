@@ -42,7 +42,7 @@ public class Application extends DomainEntity {
 	private String				statement;
 
 	@NotBlank
-	@Pattern(regexp = "^pending|accepted|pendiente|aceptada$")
+	@Pattern(regexp = "^pending|accepted|reject|pendiente|aceptada|rechazada$")
 	private String				status;
 
 	@NotBlank
@@ -50,6 +50,8 @@ public class Application extends DomainEntity {
 
 	@NotBlank
 	private String				skills;
+
+	private String				justification;
 
 	//Relationships ----------------------------------------------------------
 	@Valid
