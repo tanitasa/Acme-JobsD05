@@ -121,6 +121,7 @@ master.menu.employer.application.list.byreference = Lista de aplicaciones por re
 master.menu.employer.application.list.bystatus = Lista de aplicaciones por estado
 master.menu.employer.application.list.bycreationmoment = Lista de aplicaciones por creacion
 master.menu.employer.duty.create = Crear deber
+master.menu.employer.duties = Lista de deberes
 
 
 # master.worker ##############################################################

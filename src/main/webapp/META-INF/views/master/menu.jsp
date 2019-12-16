@@ -67,6 +67,7 @@
 			<acme:menu-suboption code="master.menu.employer.application.list.byreference" action="/employer/application/list-by-reference"/>
 			<acme:menu-suboption code="master.menu.employer.application.list.bystatus" action="/employer/application/list-by-status"/>
 			<acme:menu-suboption code="master.menu.employer.application.list.bycreationmoment" action="/employer/application/list-by-creation-moment"/>
+			<acme:menu-suboption code="master.menu.employer.duties" action="/employer/duty/list"/>
 			<acme:menu-suboption code="master.menu.employer.duty.create" action="/employer/duty/create"/>
 			</acme:menu-option>
 		

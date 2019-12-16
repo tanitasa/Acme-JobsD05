@@ -25,7 +25,7 @@ public class EmployerDutyShowService implements AbstractShowService<Employer, Du
 	public boolean authorise(final Request<Duty> request) {
 		//COMPLETAR
 		assert request != null;
-		return false;
+		return true;
 
 	}
 

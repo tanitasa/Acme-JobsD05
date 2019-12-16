@@ -18,4 +18,7 @@ public interface EmployerDutyRepository extends AbstractRepository {
 	@Query("select d from Duty d")
 	Collection<Duty> findManyAll();
 
+	@Query("select x.duties from Descriptor x where x.id = ?1")
+	Collection<Duty> findManyByDescriptor(int id);
+
 }

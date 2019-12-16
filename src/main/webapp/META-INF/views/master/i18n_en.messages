@@ -122,6 +122,7 @@ master.menu.employer.application.list.byreference = Application list by referenc
 master.menu.employer.application.list.bystatus = Application list by status
 master.menu.employer.application.list.bycreationmoment = Application list by creation moment
 master.menu.employer.duty.create = Create duty
+master.menu.employer.duties = Duties list
 
 
 # master.worker ##############################################################

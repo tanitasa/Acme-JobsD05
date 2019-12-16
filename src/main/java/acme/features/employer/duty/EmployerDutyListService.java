@@ -25,8 +25,6 @@ public class EmployerDutyListService implements AbstractListService<Employer, Du
 
 	@Override
 	public boolean authorise(final Request<Duty> request) {
-
-		//COMPLETAR
 		assert request != null;
 
 		return true;
@@ -43,9 +41,13 @@ public class EmployerDutyListService implements AbstractListService<Employer, Du
 
 	@Override
 	public Collection<Duty> findMany(final Request<Duty> request) {
-		//COMPLETAR
-		return null;
+		assert request != null;
 
+		Collection<Duty> result;
+
+		result = this.repository.findManyAll();
+
+		return result;
 	}
 
 }
