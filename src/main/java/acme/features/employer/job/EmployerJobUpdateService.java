@@ -1,9 +1,12 @@
 
 package acme.features.employer.job;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.descriptors.Descriptor;
 import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
@@ -57,7 +60,10 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
+		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
+
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor");
+		model.setAttribute("descriptors", descriptors);
 
 	}
 
