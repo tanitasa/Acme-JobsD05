@@ -528,7 +528,7 @@
 		<property name="link" value="http://www.linkjob2.com" />	
 		<property name="descriptor" ref="descriptor2" />
 		<property name="employer" ref="employer2Employer" />
-		<property name="isActive" value="true"/>
+		<property name="isActive" value="false"/>
 		<property name="applications">
 			<list>
 				<ref bean="application3" />
@@ -545,7 +545,7 @@
 		<property name="link" value="http://www.linkjob3.com" />	
 		<property name="descriptor" ref="descriptor3" />
 		<property name="employer" ref="employer1Employer" />
-		<property name="isActive" value="true"/>
+		<property name="isActive" value="false"/>
 		<property name="applications">
 			<list>
 		
@@ -556,7 +556,7 @@
   	  	<bean id="job4" class="acme.entities.jobs.Job">
   		<property name="reference" value="EMPO-JOBF" />
 		<property name="title" value="Job 4" />
-		<property name="status" value="draft" />
+		<property name="status" value="published" />
 		<property name="deadline" value="2021/06/09 11:09" />
 		<property name="salary" value="1700 €" />	
 		<property name="link" value="http://www.linkjob4.com" />	

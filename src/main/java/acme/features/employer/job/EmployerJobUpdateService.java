@@ -10,6 +10,7 @@ import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractUpdateService;
 
 @Service
@@ -24,7 +25,21 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 	public boolean authorise(final Request<Job> request) {
 		assert request != null;
 
-		return true;
+		boolean result = true;
+		int jobId;
+
+		Job job;
+		Employer employer;
+		Principal principal;
+
+		jobId = request.getModel().getInteger("id");
+		job = this.repository.findOneById(jobId);
+		employer = job.getEmployer();
+		principal = request.getPrincipal();
+		//result = job.getIsActive() || !job.getIsActive() && employer.getUserAccount().getId() == principal.getAccountId();
+		result = job.getStatus().equals("publicado") || job.getStatus().equals("published") || !(job.getStatus().equals("publicado") || job.getStatus().equals("published")) && employer.getUserAccount().getId() == principal.getAccountId();
+
+		return result;
 	}
 
 	@Override
@@ -42,7 +57,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
 
 	}
 
@@ -66,9 +81,14 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 		Double suma = 0.0;
 
-		if (entity.getDescriptor() == null) {
-			boolean tieneDescriptor = entity.getDescriptor() == null;
-			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
+		if (entity.getStatus() != null) { //No se puede modificar si está en modo published
+			boolean esFinal = entity.getStatus().equals("draft");
+			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal"); //errors.state salta si no se cumple esFinal
+		}
+
+		if (entity.getDescriptor() != null) {
+			boolean esFinal = entity.getDescriptor() != null;
+			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
 		}
 
 		//		if (!errors.hasErrors("descriptor")) {
@@ -76,24 +96,13 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		//			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
 		//		}
 
-		for (Duty d : entity.getDescriptor().getDuties()) {
-			suma = suma + d.getPercentage();
+		if (entity.getDescriptor() != null) {
+			for (Duty d : entity.getDescriptor().getDuties()) {
+				suma = suma + d.getPercentage();
+			}
+			boolean esFinal = suma == 100.0;
+			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.mayorQue100");
 		}
-
-		boolean mayorQue100 = suma > 100.0;
-
-		if (suma != 100.0) {
-			errors.state(request, mayorQue100, "descriptor", "employer.job.error.descriptor.mayorQue100");
-		}
-
-		//		if (!errors.hasErrors("descriptor")) {
-		//			for (Duty d : entity.getDescriptor().getDuties()) {
-		//				suma = suma + d.getPercentage();
-		//			}
-		//			boolean mayorQue100 = suma > 100.0;
-		//
-		//			errors.state(request, mayorQue100, "descriptor", "employer.job.error.descriptor.mayorQue100");
-		//		}
 
 		//Mirar 3º condicion de SPAM.
 

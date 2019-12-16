@@ -45,7 +45,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
 
 	}
 
@@ -69,7 +69,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 
 		Collection<Application> applications = this.repository.findApplicationsByJobId(entity.getId());
 		boolean esFinal = applications.isEmpty();
-		errors.state(request, esFinal, "applications", "employer.job.error.applications.esFinal");
+		errors.state(request, esFinal, "status", "employer.job.error.applications.esFinal");
 
 	}
 
@@ -82,8 +82,8 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		for (Application ap : applications) {
 			this.repository.delete(ap);
 		}
-
 		this.repository.delete(entity);
+
 		for (Duty d : entity.getDescriptor().getDuties()) {
 			this.repository.delete(d);
 		}

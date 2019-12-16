@@ -19,11 +19,9 @@
 <acme:list>
 	<acme:list-column code="employer.job.list.label.reference" width="5%" path="reference"/>
 	<acme:list-column code="employer.job.list.label.title" width="5%" path="title"/>
-	<acme:list-column code="employer.job.list.label.status" width="5%" path="status"/>
 	<acme:list-column code="employer.job.list.label.deadline" width="5%" path="deadline"/>
 	<acme:list-column code="employer.job.list.label.salary" width="5%" path="salary"/>
 	<acme:list-column code="employer.job.list.label.link" width="5%" path="link"/>
-	<acme:list-column code="employer.job.list.label.isActive" width="5%" path="isActive"/>
 	
 	<%--<acme:list-column code="employer.job.list.label.descriptor.description" width="5%" path="descriptor.description"/>
  	<acme:list-column code="employer.job.list.label.descriptor.duties" width="5%" path="descriptor.duties.title"/>

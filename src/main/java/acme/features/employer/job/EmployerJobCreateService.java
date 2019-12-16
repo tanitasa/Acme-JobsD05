@@ -45,7 +45,7 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "isActive", "descriptor", "employer");
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor", "employer");
 		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
 		model.setAttribute("descriptors", descriptors);
 

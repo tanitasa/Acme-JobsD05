@@ -122,6 +122,7 @@ master.menu.employer.application.list.bystatus = Lista de aplicaciones por estad
 master.menu.employer.application.list.bycreationmoment = Lista de aplicaciones por creacion
 master.menu.employer.duty.create = Crear deber
 master.menu.employer.duties = Lista de deberes
+master.menu.employer.descriptor.create = Crear descriptor
 
 
 # master.worker ##############################################################

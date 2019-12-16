@@ -18,10 +18,13 @@
 <acme:form >
 	<acme:form-textbox code="employer.job.form.label.reference" path="reference"/>
 	<acme:form-textbox code="employer.job.form.label.title" path="title"/>
+	<acme:form-moment  code="employer.job.form.label.deadline" path="deadline"/>
+	<acme:form-money   code="employer.job.form.label.salary" path="salary"/>
+	<acme:form-url     code="employer.job.form.label.link" path="link"/>
+	
 	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
 	
-
-	 
+	
 	<acme:form-select code="employer.job.form.label.status" path="status">
 				<acme:form-option code="draft" value="draft"/>
 			    <acme:form-option code="published" value="published"/>
@@ -29,15 +32,11 @@
 			
 	</acme:form-select>
 	
-	
-	<acme:form-select code="employer.job.form.label.isActive" path="isActive">
+	<%-- <acme:form-select code="employer.job.form.label.isActive" path="isActive">
 				<acme:form-option code="true" value="True"/>
 			    <acme:form-option code="false" value="False"/>
-	</acme:form-select> 
+	</acme:form-select> --%>
 
-	<acme:form-moment  code="employer.job.form.label.deadline" path="deadline"/>
-	<acme:form-money   code="employer.job.form.label.salary" path="salary"/>
-	<acme:form-url     code="employer.job.form.label.link" path="link"/>
 	<%-- <acme:form-textbox code="employer.job.form.label.isActive" path="isActive"/> --%>
 	
 
