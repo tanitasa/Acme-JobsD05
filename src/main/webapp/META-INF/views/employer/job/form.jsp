@@ -24,7 +24,7 @@
 	
 	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
 	
-	<jstl:if test="${status == 'draft' }">
+	<jstl:if test="${status == 'draft' && command !='create' }">
 	<acme:form-select code="employer.job.form.label.status" path="status">
 				<acme:form-option code="draft" value="draft"/>
 			    <acme:form-option code="published" value="published"/>
@@ -43,7 +43,7 @@
 
 	<%-- <acme:form-textbox code="employer.job.form.label.isActive" path="isActive"/> --%>
 	
-
+		
 		<acme:form-select code="employer.job.form.label.descriptor" path="descriptor">
 			<jstl:forEach items="${descriptors}" var="descriptor">
 				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor}" />

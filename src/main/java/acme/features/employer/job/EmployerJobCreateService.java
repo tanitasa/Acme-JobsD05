@@ -62,6 +62,7 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		Job result;
 
 		result = new Job();
+		result.setStatus("draft");
 
 		return result;
 	}
