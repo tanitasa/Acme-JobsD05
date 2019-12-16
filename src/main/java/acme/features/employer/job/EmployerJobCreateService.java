@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.descriptors.Descriptor;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
+import acme.features.authenticated.employer.AuthenticatedEmployerRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -19,7 +20,10 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 	//InternalState
 	@Autowired
-	EmployerJobRepository repository;
+	EmployerJobRepository			repository;
+
+	@Autowired
+	AuthenticatedEmployerRepository	employerRepository;
 
 
 	@Override
@@ -74,6 +78,11 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	public void create(final Request<Job> request, final Job entity) {
 		assert request != null;
 		assert entity != null;
+
+		Employer principal;
+		principal = (Employer) this.employerRepository.findById(request.getPrincipal().getActiveRoleId()).orElse(null);
+		assert principal != null;
+		entity.setEmployer(principal);
 
 		this.repository.save(entity);
 
