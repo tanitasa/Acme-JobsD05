@@ -47,6 +47,8 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert errors != null;
 
 		request.bind(entity, errors);
+		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
+		request.getModel().setAttribute("descriptors", descriptors);
 
 	}
 

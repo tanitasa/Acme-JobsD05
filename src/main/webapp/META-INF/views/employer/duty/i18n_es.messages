@@ -20,3 +20,5 @@ employer.duty.form.label.percentage = Porcentaje
 
 employer.duty.form.button.return = Volver
 employer.duty.form.button.create = Crear
+
+employer.duty.error.percentage = No puede ser mas de 100.00

@@ -18,14 +18,6 @@
 <acme:form>
 	<acme:form-textarea code="employer.descriptor.form.label.description" path="description"/>
 	
-	<jstl:if test="${command == 'create' }">
-		<acme:form-select code="employer.descriptor.form.label.duties" path="duties"  >
-			<jstl:forEach items="${duties}" var="duties">
-				<acme:form-option code="${duties.getTitle()}" value="${duties.getId()}" />
-			</jstl:forEach>
-		</acme:form-select>
-	</jstl:if>
-	
 	
 	<acme:form-submit test="${command == 'show' }" 
 	code="employer.duty.button.list" method="get" 

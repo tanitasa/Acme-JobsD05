@@ -651,37 +651,43 @@
   	<bean id="duty1" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 1" />
 		<property name="description" value="Description Duty 1" />						
-		<property name="percentage" value="15.5" />						
+		<property name="percentage" value="15.5" />		
+		<property name="descriptor" ref="descriptor1" />				
   	</bean>
   	
   	<bean id="duty2" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 2" />
 		<property name="description" value="Description Duty 2" />						
-		<property name="percentage" value="40.0" />						
+		<property name="percentage" value="40.0" />	
+		<property name="descriptor" ref="descriptor2" />					
   	</bean>
   	
   	<bean id="duty3" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 3" />
 		<property name="description" value="Description Duty 3" />						
-		<property name="percentage" value="55.5" />						
+		<property name="percentage" value="55.5" />	
+		<property name="descriptor" ref="descriptor3" />					
   	</bean>
   	
   	<bean id="duty4" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 4" />
 		<property name="description" value="Description Duty 4" />						
-		<property name="percentage" value="65.5" />						
+		<property name="percentage" value="65.5" />		
+		<property name="descriptor" ref="descriptor4" />				
   	</bean>
   	
   	<bean id="duty5" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 5" />
 		<property name="description" value="Description Duty 5" />						
-		<property name="percentage" value="60.5" />						
+		<property name="percentage" value="60.5" />	
+		<property name="descriptor" ref="descriptor1" />					
   	</bean>
   	
   	<bean id="duty6" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty 6" />
 		<property name="description" value="Description Duty 6" />						
-		<property name="percentage" value="95.5" />						
+		<property name="percentage" value="95.5" />	
+		<property name="descriptor" ref="descriptor2" />					
   	</bean>
 	
 	

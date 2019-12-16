@@ -1,9 +1,12 @@
 
 package acme.features.employer.duty;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.descriptors.Descriptor;
 import acme.entities.duties.Duty;
 import acme.entities.roles.Employer;
 import acme.features.employer.descriptor.EmployerDescriptorRepository;
@@ -38,6 +41,8 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 		assert errors != null;
 
 		request.bind(entity, errors);
+		Collection<Descriptor> descriptors = this.repositoryDescriptor.findManyAll();
+		request.getModel().setAttribute("descriptors", descriptors);
 	}
 
 	@Override
@@ -47,6 +52,8 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 		assert model != null;
 
 		request.unbind(entity, model, "title", "percentage", "description");
+		Collection<Descriptor> descriptors = this.repositoryDescriptor.findManyAll();
+		model.setAttribute("descriptors", descriptors);
 	}
 
 	@Override
@@ -64,6 +71,10 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		boolean esValido = entity.getPercentage() <= 100.00;
+		errors.state(request, esValido, "percentage", "employer.duty.error.percentage");
+
 	}
 
 	@Override
@@ -71,7 +82,15 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 		assert request != null;
 		assert entity != null;
 
+		String idAux = (String) request.getModel().getAttribute("descriptorId");
+		int id = Integer.parseInt(idAux);
+		Descriptor descriptor = this.repositoryDescriptor.findOneById(id);
+		entity.setDescriptor(descriptor);
+
 		this.repository.save(entity);
+
+		descriptor.getDuties().add(entity);
+		this.repositoryDescriptor.save(entity);
 	}
 
 }

@@ -1,13 +1,10 @@
 
 package acme.features.employer.descriptor;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.descriptors.Descriptor;
-import acme.entities.duties.Duty;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -45,11 +42,7 @@ public class EmployerDescriptorCreateService implements AbstractCreateService<Em
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "description", "duties");
-
-		Collection<Duty> duties = this.repository.findAllDuties();
-		model.setAttribute("duties", duties);
-
+		request.unbind(entity, model, "description");
 	}
 
 	@Override
