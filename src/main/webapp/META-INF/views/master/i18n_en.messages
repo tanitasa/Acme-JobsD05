@@ -121,6 +121,7 @@ master.menu.employer.favourite-link = Favourite link
 master.menu.employer.application.list.byreference = Application list by reference
 master.menu.employer.application.list.bystatus = Application list by status
 master.menu.employer.application.list.bycreationmoment = Application list by creation moment
+master.menu.employer.duty.create = Create duty
 
 
 # master.worker ##############################################################
