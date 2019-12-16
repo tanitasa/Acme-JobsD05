@@ -84,7 +84,7 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 		if (entity.getDeadline() != null) {
 			Calendar calendar = new GregorianCalendar();
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			calendar.add(Calendar.MILLISECOND, 1);
 			Date minimunDeadLine = calendar.getTime();
 			boolean esValido = entity.getDeadline().after(minimunDeadLine);
 			errors.state(request, esValido, "deadline", "employer.job.error.deadline");

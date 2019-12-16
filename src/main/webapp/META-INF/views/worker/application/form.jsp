@@ -25,7 +25,8 @@
 	<acme:form-textbox code="worker.application.form.label.qualifications" path="qualifications"/>
 	<acme:form-textbox code="worker.application.form.label.skills" path="skills"/>	
 	<acme:form-textbox code="worker.application.form.label.job" path="job.title"/>
+	<jstl:if test="${comand != 'create' }">
 	<acme:form-textarea code="worker.application.form.label.justification" path="justification"/>
-		
+	</jstl:if>
 	<acme:form-return code="worker.application.form.button.return"/>
 </acme:form>
