@@ -80,6 +80,7 @@
 		
 		<acme:menu-option code="master.menu.worker" access="hasRole('Worker')">
 			<acme:menu-suboption code="master.menu.worker.applications" action="/worker/application/list"/>
+			<acme:menu-suboption code="master.menu.worker.application.create" action="/worker/application/create"/>
 		</acme:menu-option>
 		
 		

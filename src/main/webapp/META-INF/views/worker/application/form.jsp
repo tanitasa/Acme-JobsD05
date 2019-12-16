@@ -16,17 +16,32 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
+
 	<acme:form-textbox code="worker.application.form.label.reference" path="reference"/>
-	<jstl:if test="${comand != 'create' }">
+	<jstl:if test="${command == 'show' }">
 		<acme:form-moment code="worker.application.form.label.creationMoment" path="creationMoment" readonly="true"/>
 	</jstl:if>
 	<acme:form-textbox code="worker.application.form.label.statement" path="statement"/>
-	<acme:form-textbox code="worker.application.form.label.status" path="status"/>
+	<jstl:if test="${command == 'show' }">
+	<acme:form-textbox code="worker.application.form.label.status" path="status" readonly="true"/>
+	</jstl:if>
 	<acme:form-textbox code="worker.application.form.label.qualifications" path="qualifications"/>
 	<acme:form-textbox code="worker.application.form.label.skills" path="skills"/>	
+	<jstl:if test="${command == 'show' }">
 	<acme:form-textbox code="worker.application.form.label.job" path="job.title"/>
-	<jstl:if test="${comand != 'create' }">
+	</jstl:if>
+	<jstl:if test="${command == 'create' }">
+		<acme:form-select code="worker.application.form.label.job" path="jobId">
+			<jstl:forEach items="${jobs}" var="job">
+				<acme:form-option code="${job.getReference()}" value="${job.getId()}" />
+			</jstl:forEach>
+		</acme:form-select>
+	</jstl:if>
+	<jstl:if test="${command == 'show' }">
 	<acme:form-textarea code="worker.application.form.label.justification" path="justification"/>
 	</jstl:if>
+	<acme:form-submit test="${command == 'create'}"
+		code = "worker.application.form.button.create"
+		action="/worker/application/create"/>
 	<acme:form-return code="worker.application.form.button.return"/>
 </acme:form>

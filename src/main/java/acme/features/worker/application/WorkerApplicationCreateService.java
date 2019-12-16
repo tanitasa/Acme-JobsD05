@@ -13,7 +13,6 @@ import acme.entities.applications.Application;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Worker;
 import acme.features.authenticated.worker.AuthenticatedWorkerRepository;
-import acme.features.employer.job.EmployerJobRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -30,7 +29,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 	AuthenticatedWorkerRepository	workerRepository;
 
 	@Autowired
-	EmployerJobRepository			jobRepository;
+	WorkerJobRepository				jobRepository;
 
 
 	@Override
@@ -47,9 +46,9 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert errors != null;
 
 		request.bind(entity, errors);
-		//TODO restriccioes: Apply for a job as long as it’s
+		//TODO restriccion: Apply for a job as long as it’s
 		//been published and its deadline hasn’t elapsed.
-		Collection<Job> jobs = this.jobRepository.findManyAll();
+		Collection<Job> jobs = this.jobRepository.findJobForApplication();
 		request.getModel().setAttribute("jobs", jobs);
 
 	}
@@ -61,7 +60,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert model != null;
 
 		request.unbind(entity, model, "reference", "creationMoment", "status", "statement", "qualifications", "skills", "worker");
-		Collection<Job> jobs = this.jobRepository.findManyAll();
+		Collection<Job> jobs = this.jobRepository.findJobForApplication();
 		model.setAttribute("jobs", jobs);
 
 		Worker worker = this.repository.findWorkerById(request.getPrincipal().getActiveRoleId());

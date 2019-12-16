@@ -130,6 +130,7 @@ master.menu.employer.descriptor.create = Create descriptor
 # master.worker ##############################################################
 master.menu.worker = Worker
 master.menu.worker.applications = Application list
+master.menu.worker.application.create = Create application
 
 # master.license ##############################################################
 
