@@ -101,7 +101,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 				suma = suma + d.getPercentage();
 			}
 			boolean esFinal = suma == 100.0;
-			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.mayorQue100");
+			errors.state(request, esFinal, "status", "employer.job.error.descriptor.mayorQue100");
 		}
 
 		//Mirar 3º condicion de SPAM.
