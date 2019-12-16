@@ -62,7 +62,10 @@
 	    </jstl:forEach>
     </acme:form>--%>
     
-		
+    <acme:form-submit test="${command == 'show' }" 
+		code="employer.descriptor.button.show" 
+		method="get" 
+		action="/employer/descriptor/show?id=${id}"/>	
     <acme:form-submit test="${command == 'show'}"
 		code = "employer.job.form.button.update"
 		action="/employer/job/update"/>

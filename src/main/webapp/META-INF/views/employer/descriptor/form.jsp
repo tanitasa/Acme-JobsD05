@@ -20,7 +20,7 @@
 	
 	<acme:form-submit test="${command == 'show' }" 
 	code="employer.duty.button.list" method="get" 
-	action="/employer/duty/list?id=${id}"/>
+	action="/employer/duty/list-mine?id=${id}"/>
 	
 	<acme:form-submit test="${command == 'create' }" 
 	code="employer.descriptor.form.button.create" 

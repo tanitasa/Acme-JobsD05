@@ -26,6 +26,9 @@ public class EmployerDutyController extends AbstractController<Employer, Duty> {
 	private EmployerDutyListService		listService;
 
 	@Autowired
+	private EmployerDutyListMineService	listMineService;
+
+	@Autowired
 	private EmployerDutyCreateService	createService;
 
 
@@ -35,7 +38,7 @@ public class EmployerDutyController extends AbstractController<Employer, Duty> {
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
-		super.addCustomCommand(CustomCommand.LIST_MINE, BasicCommand.LIST, this.listService);
+		super.addCustomCommand(CustomCommand.LIST_MINE, BasicCommand.LIST, this.listMineService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 
 	}
