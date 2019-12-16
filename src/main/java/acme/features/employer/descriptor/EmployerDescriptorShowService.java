@@ -47,6 +47,7 @@ public class EmployerDescriptorShowService implements AbstractShowService<Employ
 		if (this.repository.findOnebyJobId(id) != null) {
 			result = this.repository.findOnebyJobId(id);
 		} else {
+
 			id = request.getModel().getInteger("id");
 			result = this.repository.findOneById(id);
 		}
