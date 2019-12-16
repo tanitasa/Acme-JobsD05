@@ -88,7 +88,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 
 		if (entity.getDescriptor() != null) {
 			boolean esFinal = entity.getDescriptor() != null;
-			errors.state(request, esFinal, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
+			errors.state(request, esFinal, "status", "employer.job.error.descriptor.tieneDescriptor");
 		}
 
 		//		if (!errors.hasErrors("descriptor")) {
