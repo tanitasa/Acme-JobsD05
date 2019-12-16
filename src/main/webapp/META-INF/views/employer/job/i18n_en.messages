@@ -47,7 +47,7 @@ employer.descriptor.button.show = Descriptor
 employer.job.form.button.return = Return
 
 #JOB ERRORS
-employer.job.error.status.esFinal = The job can't be in final mode
+employer.job.error.status.esFinal = The job can't be update in final mode
 employer.job.error.applications.esFinal = Only can delete if list of applications is empty
 employer.job.error.descriptor.tieneDescriptor = Has to be assigned a descriptor
 employer.job.error.descriptor.mayorQue100 = Sum of duty's values must to be 100%

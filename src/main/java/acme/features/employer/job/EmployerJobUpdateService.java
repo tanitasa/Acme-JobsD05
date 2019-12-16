@@ -82,7 +82,8 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		Double suma = 0.0;
 
 		if (entity.getStatus() != null) { //No se puede modificar si está en modo published
-			boolean esFinal = entity.getStatus().equals("draft");
+			Job oldJob = this.repository.findOneById(entity.getId());
+			boolean esFinal = oldJob.getStatus().equals("draft");
 			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal"); //errors.state salta si no se cumple esFinal
 		}
 

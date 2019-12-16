@@ -24,13 +24,17 @@
 	
 	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
 	
-	
+	<jstl:if test="${status == 'draft' }">
 	<acme:form-select code="employer.job.form.label.status" path="status">
 				<acme:form-option code="draft" value="draft"/>
 			    <acme:form-option code="published" value="published"/>
 		<!-- 	draft|published|borrador|publicado -->
 			
 	</acme:form-select>
+	</jstl:if>
+	<jstl:if test="${status == 'published' }">
+		<acme:form-url     code="employer.job.form.label.status" path="status" readonly="true"/>
+	</jstl:if>
 	
 	<%-- <acme:form-select code="employer.job.form.label.isActive" path="isActive">
 				<acme:form-option code="true" value="True"/>
