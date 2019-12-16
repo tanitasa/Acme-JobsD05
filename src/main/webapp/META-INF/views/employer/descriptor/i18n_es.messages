@@ -11,6 +11,7 @@
 
 employer.descriptor.form.label.description = Descripción
 employer.duty.button.list = Lista de deberes
+employer.descriptor.list.label.description = Descripción
 employer.descriptor.form.button.create = Crear
 employer.descriptor.form.button.return= Volver
 

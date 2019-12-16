@@ -1,6 +1,8 @@
 
 package acme.features.employer.descriptor;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,16 +10,18 @@ import acme.entities.descriptors.Descriptor;
 import acme.entities.roles.Employer;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractListService;
 
 @Service
-public class EmployerDescriptorShowService implements AbstractShowService<Employer, Descriptor> {
+public class EmployerDescriptorListService implements AbstractListService<Employer, Descriptor> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	EmployerDescriptorRepository repository;
+	private EmployerDescriptorRepository repository;
 
+
+	// AbstractListService<Authenticated, Request> interface ---------------
 
 	@Override
 	public boolean authorise(final Request<Descriptor> request) {
@@ -32,27 +36,18 @@ public class EmployerDescriptorShowService implements AbstractShowService<Employ
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "description");
-
+		request.unbind(entity, model, "description", "duties");
 	}
 
 	@Override
-	public Descriptor findOne(final Request<Descriptor> request) {
+	public Collection<Descriptor> findMany(final Request<Descriptor> request) {
 		assert request != null;
 
-		Descriptor result;
-		int id;
-		id = new Integer(request.getServletRequest().getParameter("id"));
+		Collection<Descriptor> result;
 
-		if (this.repository.findOnebyJobId(id) != null) {
-			result = this.repository.findOnebyJobId(id);
-		} else {
-			id = request.getModel().getInteger("id");
-			result = this.repository.findOneById(id);
-		}
+		result = this.repository.findManyAll();
 
 		return result;
-
 	}
 
 }

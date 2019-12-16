@@ -49,6 +49,7 @@ public class EmployerDescriptorCreateService implements AbstractCreateService<Em
 
 		Collection<Duty> duties = this.repository.findAllDuties();
 		model.setAttribute("duties", duties);
+
 	}
 
 	@Override

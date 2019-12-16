@@ -10,7 +10,10 @@
 
 
 employer.descriptor.form.label.description = Description
+employer.descriptor.list.label.description = Description
 employer.duty.button.list = List of duties
+
+
 employer.descriptor.form.button.create = Create
 employer.descriptor.form.button.return= Return
 
