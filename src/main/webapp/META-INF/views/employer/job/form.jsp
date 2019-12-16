@@ -21,9 +21,7 @@
 	<acme:form-moment  code="employer.job.form.label.deadline" path="deadline"/>
 	<acme:form-money   code="employer.job.form.label.salary" path="salary"/>
 	<acme:form-url     code="employer.job.form.label.link" path="link"/>
-	
-	<%-- <acme:form-textbox code="employer.job.form.label.status" path="status"/> --%>
-	
+		
 	<jstl:if test="${status == 'draft' && command !='create' }">
 	<acme:form-select code="employer.job.form.label.status" path="status">
 				<acme:form-option code="draft" value="draft"/>
@@ -36,33 +34,13 @@
 		<acme:form-url     code="employer.job.form.label.status" path="status" readonly="true"/>
 	</jstl:if>
 	
-	<%-- <acme:form-select code="employer.job.form.label.isActive" path="isActive">
-				<acme:form-option code="true" value="True"/>
-			    <acme:form-option code="false" value="False"/>
-	</acme:form-select> --%>
-
-	<%-- <acme:form-textbox code="employer.job.form.label.isActive" path="isActive"/> --%>
-	
-		
+	<jstl:if test="${command == 'create' }">
 		<acme:form-select code="employer.job.form.label.descriptor" path="descriptorId">
 			<jstl:forEach items="${descriptors}" var="descriptor">
 				<acme:form-option code="${descriptor.getDescription()}" value="${descriptor.getId()}" />
 			</jstl:forEach>
 		</acme:form-select>
-	
-	 <%--<acme:form-textarea code="employer.job.form.label.descriptor.description" path="descriptor.description"/>
-	<acme:form-textarea code="employer.job.form.label.descriptor.duties" path="descriptor.duties.title"/>	 
-	<acme:form-textarea code="employer.job.form.label.applications" path ="applications.reference"/> --%>
-	
-	
-	<%--<acme:message  code="employer.job.form.label.descriptor.duties"/><br/>
-    <acme:form>
-	    <jstl:forEach items="${duties}" var="item">
-	        <jstl:out value ="${item.getTitle()}"/><br/>
-	        <jstl:out value    ="${item.getDescription()}"/><br/>
-	        <jstl:out value="${item.getPercentage()}"/><br/><br/>
-	    </jstl:forEach>
-    </acme:form>--%>
+	</jstl:if>
     
     <acme:form-submit test="${command == 'show' }" 
 		code="employer.descriptor.button.show" 

@@ -50,3 +50,4 @@ employer.job.error.status.esFinal = No puede ser actualizado en modo final
 employer.job.error.applications.esFinal = Solo se puede borrar si la lista de aplicaciones esta vacia
 employer.job.error.descriptor.tieneDescriptor = Tiene que tener asignado un descriptor
 employer.job.error.descriptor.mayorQue100 = La suma de los porcentajes debe ser 100%
+employer.job.error.deadline = Debe ser futura

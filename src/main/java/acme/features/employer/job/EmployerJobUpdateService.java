@@ -1,12 +1,13 @@
 
 package acme.features.employer.job;
 
-import java.util.Collection;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.descriptors.Descriptor;
 import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
@@ -43,7 +44,6 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		job = this.repository.findOneById(jobId);
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
-		//result = job.getIsActive() || !job.getIsActive() && employer.getUserAccount().getId() == principal.getAccountId();
 		result = job.getStatus().equals("publicado") || job.getStatus().equals("published") || !(job.getStatus().equals("publicado") || job.getStatus().equals("published")) && employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;
@@ -64,11 +64,7 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
-
 		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
-		model.setAttribute("descriptors", descriptors);
-
 	}
 
 	@Override
@@ -90,32 +86,35 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert errors != null;
 
 		Double suma = 0.0;
+		Job oldJob = this.repository.findOneById(entity.getId());
 
 		if (entity.getStatus() != null) { //No se puede modificar si está en modo published
-			Job oldJob = this.repository.findOneById(entity.getId());
-			boolean esFinal = oldJob.getStatus().equals("draft");
-			errors.state(request, esFinal, "status", "employer.job.error.status.esFinal"); //errors.state salta si no se cumple esFinal
+			boolean esValido = oldJob.getStatus().equals("draft");
+			errors.state(request, esValido, "status", "employer.job.error.status.esValido"); //errors.state salta si no se cumple esValido
 		}
 
-		if (entity.getDescriptor() != null) {
-			boolean esFinal = entity.getDescriptor() != null;
-			errors.state(request, esFinal, "status", "employer.job.error.descriptor.tieneDescriptor");
+		if (entity.getDescriptor() == null && entity.getStatus() != null) {
+			boolean esValido = entity.getDescriptor() != null || entity.getStatus().equals("draft");
+			errors.state(request, esValido, "status", "employer.job.error.descriptor.tieneDescriptor");
 		}
 
-		//		if (!errors.hasErrors("descriptor")) {
-		//			boolean tieneDescriptor = entity.getDescriptor() == null;
-		//			errors.state(request, tieneDescriptor, "descriptor", "employer.job.error.descriptor.tieneDescriptor");
-		//		}
-
-		if (entity.getDescriptor() != null) {
+		if (entity.getDescriptor() != null && entity.getStatus() != null) {
 			for (Duty d : entity.getDescriptor().getDuties()) {
 				suma = suma + d.getPercentage();
 			}
-			boolean esFinal = suma == 100.0;
-			errors.state(request, esFinal, "status", "employer.job.error.descriptor.mayorQue100");
+			boolean esValido = suma == 100.0 || entity.getStatus().equals("draft");
+			errors.state(request, esValido, "status", "employer.job.error.descriptor.mayorQue100");
 		}
 
-		//Mirar 3º condicion de SPAM.
+		if (entity.getDeadline() != null) {
+			Calendar calendar = new GregorianCalendar();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			Date minimunDeadLine = calendar.getTime();
+			boolean esValido = entity.getDeadline().after(minimunDeadLine);
+			errors.state(request, esValido, "deadline", "employer.job.error.deadline");
+		}
+
+		//TODO 3º condicion de SPAM.
 
 	}
 
@@ -123,11 +122,6 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 	public void update(final Request<Job> request, final Job entity) {
 		assert request != null;
 		assert entity != null;
-
-		String idAux = (String) request.getModel().getAttribute("descriptorId");
-		int id = Integer.parseInt(idAux);
-		Descriptor descriptor = this.descriptorRepository.findOneById(id);
-		entity.setDescriptor(descriptor);
 
 		this.repository.save(entity);
 

@@ -40,7 +40,6 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		job = this.repository.findOneById(jobId);
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
-		//result = job.getIsActive() || !job.getIsActive() && employer.getUserAccount().getId() == principal.getAccountId();
 		result = job.getStatus().equals("publicado") || job.getStatus().equals("published") || !(job.getStatus().equals("publicado") || job.getStatus().equals("published")) && employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;
@@ -53,12 +52,16 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		assert entity != null;
 		assert model != null;
 
-		//Collection<Duty> duties = entity.getDescriptor().getDuties();
 		Collection<Descriptor> descriptors = this.repository.findAllDescriptors();
 
-		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link", "descriptor");
-		//model.setAttribute("duties", duties);
+		request.unbind(entity, model, "reference", "title", "status", "deadline", "salary", "link");
 		model.setAttribute("descriptors", descriptors);
+		if (null != entity.getDescriptor()) {
+			String descriptionDescriptor = entity.getDescriptor().getDescription();
+			model.setAttribute("descriptor", descriptionDescriptor);
+		} else {
+			model.setAttribute("descriptor", "");
+		}
 	}
 
 	@Override

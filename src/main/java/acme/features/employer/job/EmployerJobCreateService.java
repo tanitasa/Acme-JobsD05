@@ -1,7 +1,10 @@
 
 package acme.features.employer.job;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +79,14 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		if (entity.getDeadline() != null) {
+			Calendar calendar = new GregorianCalendar();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			Date minimunDeadLine = calendar.getTime();
+			boolean esValido = entity.getDeadline().after(minimunDeadLine);
+			errors.state(request, esValido, "deadline", "employer.job.error.deadline");
+		}
 
 	}
 

@@ -620,7 +620,7 @@
   	</bean>
   	
   	<bean id="descriptor2" class="acme.entities.descriptors.Descriptor">
-		<property name="description" value="Description Descriptor 3" />
+		<property name="description" value="Description Descriptor 2" />
 		<property name="duties">
 			<list>
 				<ref bean="duty2" />
